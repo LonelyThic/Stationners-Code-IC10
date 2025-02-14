@@ -1,0 +1,49 @@
+#Place all panels in uniform manner.
+#Set one to 15 Vertical(Min value). 0 Horizontal.
+#Take note direction panel faces.
+#Place daylight sensor flat pointing in the direction
+#the panel now faces. (Cable port facing opposite)
+
+#Alias the sensor to d0
+alias sensor d0
+
+# define the Panel variants
+define Heavy -934345724
+define HeavyDual -1545574413
+define Solar -2045627372
+define SolarDual -539224550
+
+start:
+yield
+#Check for daylight.
+l r0 sensor Activate
+beqz r0 reset
+#Read the Horizontal data.
+l r0 sensor Horizontal
+#Set batch to the panels.
+sb Heavy Horizontal r0
+sb HeavyDual Horizontal r0
+sb Solar Horizontal r0
+sb SolarDual Horizontal r0
+#Read the Vertical data and subtract 90
+l r0 sensor Vertical
+sub r0 90 r0
+#Set batch to the panels.
+sb Heavy Vertical r0
+sb HeavyDual Vertical r0
+sb Solar Vertical r0
+sb SolarDual Vertical r0
+j start
+
+reset:
+yield
+sb Heavy Horizontal 270 #Edit this to face sunrise.
+sb HeavyDual Horizontal 270 #Edit this
+sb Solar Horizontal 270 #Edit this
+sb SolarDual Horizontal 270 #Edit this
+sb Heavy Vertical 0
+sb HeavyDual Vertical 0
+sb Solar Vertical 0
+sb SolarDual Vertical 0
+sleep 10
+j start
