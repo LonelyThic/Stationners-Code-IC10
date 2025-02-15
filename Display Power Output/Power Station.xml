@@ -1,0 +1,67 @@
+alias Lever d0
+define Generator HASH("StructureSolidFuelGenerator")
+define SGene HASH("SGene")
+define Silo HASH("StructureSDBSilo")
+
+define Cable HASH("StructureCableAnalysizer")
+define Console HASH("StructureConsoleLED1x3")
+
+define Actual HASH("ALED")
+define Potential HASH("PLED")
+define Require HASH("RLED")
+define SBLED HASH("SBLED")
+define LBLED HASH("LBLED")
+
+define GReader HASH("Gene Reader")
+define RReader HASH("Require Reader")
+
+define Battery HASH("StructureBatteryLarge")
+define LastBattery HASH("Last Battery")
+define SecondBattery HASH("Second Battery")
+
+start:
+#display
+yield
+sbn Console Actual Mode 2
+sbn Console Potential Mode 2
+sbn Console Require Mode 2
+lbn r0 Cable GReader PowerActual Sum
+sbn Console Actual Setting r0
+
+lbn r0 Cable RReader PowerRequired Sum
+sbn Console Require Setting r0
+
+lbn r0 Cable GReader PowerPotential Sum
+sbn Console Potential Setting r0
+
+#Lever Manual
+yield
+l r1 d0 Setting
+bne r1 1 43
+sb Silo Open 1
+sbn Generator SGene On 1
+
+beq r1 1 48
+sb Silo Open 0
+sbn Generator SGene On 0
+
+#Auto Gene
+yield
+lbn r2 Battery SecondBattery Mode Minimum
+lbn r3 Battery LastBattery Mode Minimum
+sbn Console SBLED Mode 0
+sbn Console LBLED Mode 0
+sbn Console SBLED Setting r2
+sbn Console LBLED Setting r3
+
+define Speaker HASH("StructureKlaxon")
+define LSpeaker HASH("LSpeaker")
+define HSpeaker HASH("HSpeaker")
+sb Speaker Volume 100
+
+bgt r2 6 64
+sbn Speaker LSpeaker Mode 23
+sbn Speaker LSpeaker On 1
+
+
+j start
