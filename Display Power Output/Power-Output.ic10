@@ -1,0 +1,8 @@
+#
+alias cable d0
+define LLed HASH("")
+
+start
+yield
+
+l r0 cab
