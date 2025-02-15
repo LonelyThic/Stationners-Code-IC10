@@ -1,8 +1,15 @@
-#
-alias cable d0
+define cable HASH("")
+define SLed HASH("")
+define MLed HASH("")
 define LLed HASH("")
+
 
 start
 yield
 
-l r0 cab
+l r0 cable PowerActual
+sb SLed r0
+sb MLed r0
+sb LLed r0
+
+j start:
