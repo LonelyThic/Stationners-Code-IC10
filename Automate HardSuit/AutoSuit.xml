@@ -1,9 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<InstructionData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <GameVersion>0.2.5370.24111</GameVersion>
-  <Title>Auto Suit</Title>
-  <Description>Automate HardSuit​</Description>
-  <Author>Lonely</Author>
 alias suit db
 alias helmet d0
 alias backpack d1
@@ -60,5 +54,4 @@ s suit PressureSetting 50
 s suit AirRelease 1
 s suit Filtration 1
 
-j start</Instructions>
-</InstructionData>
+j start
