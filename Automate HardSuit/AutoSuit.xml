@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<InstructionData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <GameVersion>0.2.5370.24111</GameVersion>
+  <Title>Auto Suit</Title>
+  <Description>Automate HardSuit​</Description>
+  <Author>Lonely</Author>
+alias suit db
+alias helmet d0
+alias backpack d1
+
+alias safe r10
+
+start:
+yield
+
+#close
+l r0 suit RatioVolatiles
+slt safe r0 0.02
+l r0 suit RatioPollutant
+slt r1 r0 0.02
+and safe safe r1
+l r0 suit RatioNitrousOxide
+slt r1 r0 0.02
+and safe safe r1
+l r0 helmet Open
+breqz r0 2
+s helmet Open safe
+
+#lock
+l r0 suit TemperatureExternal
+sgt safe r0 273
+slt r1 r0 323
+and safe safe r1
+l r0 suit PressureExternal
+sgt r1 r0 45
+and safe safe r1
+slt r1 r0 150
+and safe safe r1
+
+l r0 helmet Open
+breqz r0 1
+s helmet Open safe
+seqz r0 safe
+s helmet Lock r0
+
+l r0 helmet Open
+seqz r0 r0
+s suit AirRelease r0
+s suit Filtration r0
+s suit On r0
+beqz r0 start
+
+l r0 suit Setting
+mod r0 r0 1000
+s suit AirRelease 0
+s suit Filtration 0
+s suit PressureSetting r0
+yield
+s suit PressureSetting 50
+s suit AirRelease 1
+s suit Filtration 1
+
+j start</Instructions>
+</InstructionData>
