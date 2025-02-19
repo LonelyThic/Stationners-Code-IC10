@@ -3,3 +3,5 @@ This display values(Actual, Potential, required) from cable analysizer to my Lar
 
 Note:
 Set lever to d0
+
+This version 1 of this Power Station code
