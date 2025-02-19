@@ -1,0 +1,20 @@
+define WStation HASH("StructureWeatherStation")
+define speak HASH("StructureKlaxon")
+define console HASH("StructureConsoleLED1x3")
+define consoles HASH("StructureConsoleLED5")
+start:
+yield
+lb r0 WStation NextWeatherEventTime Average
+div r1 r0 60
+sb speak Volume 100
+sb console Setting r1
+sb consoles Setting r10
+
+ble r1 0 18
+sb speak SoundAlert 18
+sb speak On 1
+yield
+yield
+
+sb speak On 0
+j start
