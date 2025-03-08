@@ -18,6 +18,7 @@ and safe safe r1
 l r0 helmet Open
 breqz r0 2
 s helmet Open safe
+
 #lock
 l r0 suit TemperatureExternal
 sgt safe r0 273
@@ -41,16 +42,7 @@ s suit AirRelease r0
 s suit Filtration r0
 s suit On r0
 beqz r0 start
-#alarm
-l r0 suit Setting
-blt r0 1000 heading
-l r0 helmet On
-seqz r0 r0
-s helmet On r0
-yield
-seqz r0 r0
-s helmet On r0
-yield
+
 #Navagation
 heading:
 l r0 suit TemperatureSetting
