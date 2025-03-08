@@ -1,6 +1,5 @@
 This an example code to automate the HardSuit
-this is mainly just open and lock/close the helmet depend on the setting
+with this version it allows to show the location of the suit
 
 
 Note:
-There are some values you can edit
