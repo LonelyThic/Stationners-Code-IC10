@@ -1,0 +1,1 @@
+This an example of auto turn on and off the arc furnace
