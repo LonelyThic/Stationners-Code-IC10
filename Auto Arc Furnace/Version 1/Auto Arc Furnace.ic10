@@ -1,0 +1,9 @@
+Start:
+yield
+l r0 arc ImportCount
+add r1 r0 1
+s arc On 1
+s arc Activate 1
+blt r0 r1 6
+s arc On 1
+j Start
